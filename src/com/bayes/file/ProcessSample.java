@@ -17,15 +17,15 @@ public class ProcessSample {
     	
     	if(dataPath.length==0)
     		return false; 
-    	String j = System.getProperty("user.dir")+"\\dataSet\\Sample\\count\\"+category+".txt";
-    	File f = new File(System.getProperty("user.dir")+"\\dataSet\\Sample\\count\\"+category+".txt");    		
+    	String j = System.getProperty("user.dir")+File.separator+"dataSet"+File.separator+"Sample"+File.separator+"count"+File.separator+category+".txt";
+    	File f = new File(System.getProperty("user.dir")+File.separator+"dataSet"+File.separator+"Sample"+File.separator+"count"+File.separator+category+".txt");    		
     	if(!f.exists())
     			f.createNewFile();
         OutputStream fotps = new FileOutputStream(f);    	
     	Map<String,Integer> count = new HashMap<String,Integer>();
     	
         for(int i=0;i<dataPath.length;i++){
-    		File dt = new File(System.getProperty("user.dir")+"\\dataSet\\Sample\\"+dataPath[i]);
+    		File dt = new File(System.getProperty("user.dir")+File.separator+"dataSet"+File.separator+"Sample"+File.separator+dataPath[i]);
     		Scanner sc = new Scanner(dt);
     		String text = "";
     		while(sc.hasNextLine())
@@ -37,10 +37,13 @@ public class ProcessSample {
         String writeContent = "";
         Set keys = count.keySet();
         Iterator itr = keys.iterator();
+        int count_num = 0;
         while(itr.hasNext()){
         	String key = (String)itr.next();
-        	writeContent +=  key + ":" + ((Integer)count.get(key)).intValue() + "\r\n";
+        	writeContent +=  "\r\n" + key + ":" + ((Integer)count.get(key)).intValue() ;
+            count_num += ((Integer)count.get(key)).intValue();
         }
+        writeContent = count_num + writeContent;
         fotps.write(writeContent.getBytes());
         fotps.close();
     	return true;
