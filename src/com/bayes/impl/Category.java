@@ -7,8 +7,6 @@ public class Category {
      private Map<String,Integer> count = new HashMap<String,Integer>();
      private String category;
      private int count_num=0,LaplaceCalibration=0;
-     private final String pathPrefix = System.getProperty("user.dir")+"//"
-     
      public Category(String category){
     	 
      }
