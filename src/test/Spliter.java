@@ -2,6 +2,8 @@ package test;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.wltea.analyzer.core.IKSegmenter;
 import org.wltea.analyzer.core.Lexeme;
@@ -15,5 +17,22 @@ public class Spliter {
         while((lex=ik.next())!=null){  
             System.out.print(lex.getLexemeText()+"|");  
         }    
+	}
+	
+	public static Map<String,Integer> getTextCount(Map<String,Integer> count,String text) throws IOException{
+        StringReader sr=new StringReader(text);  
+        IKSegmenter ik=new IKSegmenter(sr, true);  
+        Lexeme lex=null;  
+        while((lex=ik.next())!=null){
+        	String lexString = lex.getLexemeText();
+        	if(count.get(lexString)==null)
+        		count.put(lexString, new Integer(1));
+        	else{
+        		int value = ((Integer)count.get(lexString)).intValue();
+        		count.put(lexString, new Integer(value+1));
+        	}           
+            System.out.print(lex.getLexemeText()+"|");  
+        } 		
+		return count;
 	}
 }
