@@ -36,8 +36,23 @@ public class Spliter {
 		StringReader sr=new StringReader(text);  
         IKSegmenter ik=new IKSegmenter(sr, true);  
         Lexeme lex=null;  
-        while((lex=ik.next())!=null)
-        	splitContent += lex.getLexemeText()+":";
+        while((lex=ik.next())!=null){
+            if(REGEX[0]==""||REGEX[0]==null){
+                for(int i=0;i<NOMEAN.length;i++){
+                	  char r[]  = NOMEAN[i].toCharArray();
+                	  String content = "[";
+                	  for(char j:r)
+                	    content += "\\u"+Integer.toHexString((int)j);
+                	  content += "]";
+                	  REGEX[i] = PFIX + content + SFIX; 
+                	  //System.out.println(NOMEAN[i]+":"+content);
+                }
+            }
+            String lexString = lex.getLexemeText();
+        	if(isInNOMEAN(lexString))
+        		continue;
+        	splitContent += lexString+":";
+        }
            // System.out.print(lex.getLexemeText()+"|");
         return splitContent.split(":");
 	}
