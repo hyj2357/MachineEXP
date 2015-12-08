@@ -28,8 +28,7 @@ public class Spliter {
 	public static Map<String,Integer> getTextCount(Map<String,Integer> count,String text) throws IOException{
         StringReader sr=new StringReader(text);  
         IKSegmenter ik=new IKSegmenter(sr, true);  
-        Lexeme lex=null;
-        
+        Lexeme lex=null;       
         if(REGEX[0]==""||REGEX[0]==null){
             for(int i=0;i<NOMEAN.length;i++){
             	  char r[]  = NOMEAN[i].toCharArray();
@@ -57,10 +56,6 @@ public class Spliter {
 	}
 	
 	public static boolean isInNOMEAN(String text){
-		if(text.equals("Ò»¸ö")){
-			int i = 0;
-			i++;
-		}
 		for(int i=0;i<REGEX.length-1;i++){
 			if(Pattern.matches(REGEX[i], text))
 				return true;
