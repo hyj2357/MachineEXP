@@ -25,6 +25,30 @@ public class Spliter {
         }    
 	}
 	
+	/**
+	 * 
+	 * @param text
+	 * @return
+	 * @throws IOException 
+	 */
+	public static String[] splitText(String text) throws IOException{
+		String splitContent = "";
+		StringReader sr=new StringReader(text);  
+        IKSegmenter ik=new IKSegmenter(sr, true);  
+        Lexeme lex=null;  
+        while((lex=ik.next())!=null)
+        	splitContent += lex.getLexemeText()+":";
+           // System.out.print(lex.getLexemeText()+"|");
+        return splitContent.split(":");
+	}
+	
+	/**
+	 * 获取某段文本中的所有词频与总频率
+	 * @param count  词汇与词频Map
+	 * @param text  处理文本
+	 * @return  处理好的词汇与词频Map
+	 * @throws IOException
+	 */
 	public static Map<String,Integer> getTextCount(Map<String,Integer> count,String text) throws IOException{
         StringReader sr=new StringReader(text);  
         IKSegmenter ik=new IKSegmenter(sr, true);  
@@ -55,7 +79,12 @@ public class Spliter {
 		return count;
 	}
 	
-	public static boolean isInNOMEAN(String text){
+	/**
+	 * 判断是否存在无意义集合中的词汇是测试文本的子序列
+	 * @param text 测试文本
+	 * @return 
+	 */
+	private static boolean isInNOMEAN(String text){
 		for(int i=0;i<REGEX.length-1;i++){
 			if(Pattern.matches(REGEX[i], text))
 				return true;
