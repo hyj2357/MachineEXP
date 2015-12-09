@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
+import com.bayes.impl.BayesClassify;
+
 public class TestMain {
     public static void main(String args[]) throws IOException{
    	    //String prefix = System.getProperty("user.dir")+File.separator+"testSet"+File.separator;

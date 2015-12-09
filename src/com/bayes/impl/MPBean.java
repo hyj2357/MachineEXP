@@ -1,4 +1,4 @@
-package com.bayes.file;
+package com.bayes.impl;
 
 public class MPBean {
      private double p;

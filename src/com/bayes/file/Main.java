@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
+import com.bayes.impl.BayesClassify;
+
 public class Main {
      public static void main(String args[]) throws IOException{
     	 BayesClassify bcy = new BayesClassify(new String[]{"财经","健康","教育","军事","旅游","体育","文化","招聘","IT"});

@@ -1,9 +1,7 @@
-package com.bayes.file;
+package com.bayes.impl;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-
-import com.bayes.impl.Category;
 
 import test.Spliter;
 
