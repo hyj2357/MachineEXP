@@ -27,7 +27,7 @@ public class BayesClassify {
     		 }
     		 for(int j=0;j<a.length;j++){
     		    Integer in = this.categories[i].getCount().get(a[j]);
-    		    int s = (in==null?0:in.intValue())+LaplaceCalibration;
+    		    int s = in==null?1:( in.intValue()+LaplaceCalibration );
     		    int d = this.categories[i].getCount_num()+LaplaceCalibration;
     		    double p_one = ((double)s)/((double)d);
     		    p[i] = j==0?p_one:(p[i]*p_one);    		    
@@ -52,7 +52,7 @@ public class BayesClassify {
      }
      
      /**
-      * 小数点左移至浮点数大于一以防止浮点数过小
+      * 移动小数点保持浮点数在1~10范围内
       * @param lf
       * @return
       */
